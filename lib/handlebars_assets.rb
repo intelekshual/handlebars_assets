@@ -1,6 +1,9 @@
 require "handlebars_assets/version"
+require "handlebars_assets/config"
 
 module HandlebarsAssets
+  extend Config
+
   PATH = File.expand_path("../../vendor/assets/javascripts", __FILE__)
 
   def self.path
@@ -14,6 +17,6 @@ module HandlebarsAssets
     require 'handlebars_assets/engine'
   else
     require 'sprockets'
-    Sprockets.register_engine '.hbs', TiltHandlebars
+    Sprockets.register_engine ".#{HandlebarsAssets.template_extension}", TiltHandlebars
   end
 end
